@@ -11,7 +11,16 @@ const postRouter = express.Router();
 
  // Index -> Get
 postRouter.get("/", (req, res) => {
-    res.send("<h2>Mostrato l'intero catalogo</h2>");
+   const dataResponse = {
+      "info" : {
+         "lenght" : dataPost.length,
+      },
+      "data" : {
+         "posts" : dataPost,
+      }
+   }
+
+    res.send(dataResponse);
 })
  // Show -> Get
  postRouter.get("/:id", (req, res) => {
@@ -36,7 +45,7 @@ postRouter.get("/", (req, res) => {
     res.send(`Aggiornato parzialmente l'elemento con ID ${id}`);
  })
 
- // Destry -> Delete
+ // Destroy -> Delete
  postRouter.delete("/:id", (req, res) => {
    const id = req.params.id;
    res.send(`Elimintato l'elemento con ID ${id}`);
