@@ -20,7 +20,7 @@ postRouter.get("/", (req, res) => {
       }
    }
 
-    res.send(dataResponse);
+    res.json(dataResponse);
 })
  // Show -> Get
  postRouter.get("/:id", (req, res) => {
