@@ -24,8 +24,22 @@ postRouter.get("/", (req, res) => {
 })
  // Show -> Get
  postRouter.get("/:id", (req, res) => {
-    const id = req.params.id;
-    res.send(`Mostrato l'elendo con ID ${id}`);
+   const idString = req.params.id;
+   const id = parseInt(idString);
+   
+   let dataResponse = {
+      "data" : {}
+   }
+   
+   if (id > 0 && id < dataPost.length){
+
+      dataResponse.data = dataPost.find((curPost) => curPost.id === id)
+   }else{
+      dataResponse.data = {
+         "error" : `Indice non compreso nel rande [1, ${dataPost.length}]`
+      }
+   }
+    res.json(dataResponse);
  })
 
  // Store -> Post
